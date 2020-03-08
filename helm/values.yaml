@@ -1,0 +1,57 @@
+# Helper Variables #
+nameOverride: ""
+fullnameOverride: ""
+serviceAccount:
+  create: true
+  name:
+####################
+application: 
+  name: api-gateway-fav-product
+  version: v1
+replicas:
+  min: __{minReplicas}__
+  max: __{maxReplicas}__
+scaling:
+  targetCpuUsagePercentage: __{targetCpu}__
+  targetMemoryUsagePercentage: __{targetMemory}__
+networking:
+  port: __{port}__
+image:
+  repository: __{repository}__
+  tag: __{imageTag}__
+limits:
+  memory: __{memory}__
+  cpu: __{cpu}__
+checks:
+  ready:
+    path: __{readyPath}__
+    port: __{readyPort}__
+  live:
+    path: __{livePath}__
+    port: __{livePort}__
+external:
+  hosts:
+    - "*.amazonaws.com"
+  ports:
+    - number: 443
+      protocol: TLS
+      name: https
+    - number: 80
+      protocol: HTTP
+      name: http
+environmentVariables:
+  plain:
+    - name: APP_PORT
+      value: __{port}__
+    - name: APP_ENV
+      value: __{env}__
+    - name: API_AUTH
+      value: __{apiAuth}__
+    - name: API_CLIENT_CONSOLIDATOR
+      value: __{apiClientConsolidator}__
+    - name: API_CLIENT_READER
+      value: __{apiClientReader}__
+    - name: API_FAV_LIST_CONSOLIDATOR
+      value: __{apiFavListConsolidator}__
+    - name: API_FAV_LIST_READER
+      value: __{apiFavListReader}__
